@@ -2,10 +2,13 @@
 
 #![feature(i128_type)]
 
+extern crate idem;
+
 #[cfg(feature = "libc")]
 extern crate libc;
 
 use core::ops::*;
+use idem::Zero;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Span(i128);
@@ -24,6 +27,10 @@ impl Span {
             tv_sec: s, tv_nsec: (self.0 / 1_000_000_000) as _,
         }) } else { None }
     }
+}
+
+impl Zero for Span {
+    const zero: Self = Span(0);
 }
 
 impl Add for Span {
