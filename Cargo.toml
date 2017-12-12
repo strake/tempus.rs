@@ -1,6 +1,6 @@
 [package]
 name = "tempus"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["M Farkas-Dyck <strake888@gmail.com>"]
 description = "time"
 license = "MIT OR Apache-2.0"
@@ -10,4 +10,4 @@ name = "time"
 
 [dependencies]
 idem = "0.1"
-libc = { version = "0.2", optional = true }
+libc = { version = "0.2", default-features = false, optional = true }
