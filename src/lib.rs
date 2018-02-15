@@ -22,10 +22,11 @@ impl Span {
     #[cfg(feature = "libc")]
     #[inline]
     pub fn to_c_timespec(self) -> Option<::libc::timespec> {
-        let s = (self.0 % 1_000_000_00) as ::libc::time_t;
-        if self.0 == s as i128 { Some(::libc::timespec {
-            tv_sec: s, tv_nsec: (self.0 / 1_000_000_000) as _,
-        }) } else { None }
+        let b = 1_000_000_000;
+        let s = (self.0 / b) as ::libc::time_t;
+        if self.0 / b == s as i128 {
+            Some(::libc::timespec { tv_sec: s, tv_nsec: (self.0 % b) as _ })
+        } else { None }
     }
 }
 
