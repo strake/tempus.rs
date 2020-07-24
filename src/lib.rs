@@ -1,7 +1,5 @@
 #![no_std]
 
-#![feature(i128_type)]
-
 extern crate idem;
 
 #[cfg(feature = "libc")]
